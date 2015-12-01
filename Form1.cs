@@ -21,5 +21,18 @@ namespace bugreal
         {
 
         }
+
+        private void configureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loadBugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadbug frmchild = new loadbug();
+            frmchild.MdiParent = this;
+            frmchild.Show();
+
+        }
     }
 }
