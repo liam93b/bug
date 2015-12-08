@@ -24,7 +24,7 @@ namespace bugreal
 
         private void configureToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void loadBugToolStripMenuItem_Click(object sender, EventArgs e)
@@ -33,6 +33,11 @@ namespace bugreal
             frmchild.MdiParent = this;
             frmchild.Show();
 
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                
         }
     }
 }
