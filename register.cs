@@ -16,7 +16,7 @@ namespace bugreal
         public register()
         {
             InitializeComponent();
-            populateListBox();
+            Connection();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -28,11 +28,11 @@ namespace bugreal
         {
 
         }
-        public void populateListBox()
+        private void Connection()
         {
             mySqlConnection = new SqlCeConnection(@"Data Source=C:\temp\Mydatabase#1.sdf ");
 
-            String selcmd = "SELECT username, password FROM users ORDER BY username";
+            String selcmd = "SELECT * FROM users ORDER BY username";
 
             SqlCeCommand mySqlCommand = new SqlCeCommand(selcmd, mySqlConnection);
 
@@ -41,6 +41,8 @@ namespace bugreal
                 mySqlConnection.Open();
 
                 SqlCeDataReader mySqlDataReader = mySqlCommand.ExecuteReader();
+
+
             }
 
             catch (SqlCeException ex)
@@ -48,7 +50,6 @@ namespace bugreal
 
                 MessageBox.Show("Failure" + ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         public bool checkInputs()
@@ -76,10 +77,11 @@ namespace bugreal
                 cmdInsert.Parameters.AddWithValue("@user", user);
                 cmdInsert.Parameters.AddWithValue("@pass", pass);
                 cmdInsert.ExecuteNonQuery();
+                MessageBox.Show("Succesfully you have registered you can now sign in!");
             }
             catch (SqlCeException ex)
             {
-                MessageBox.Show(user + " .." + ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(user + " error duplicate username" );
             }
 
         }
@@ -92,11 +94,12 @@ namespace bugreal
                 String commandString = "INSERT INTO users(username, password) VALUES (@user, @pass)";
 
                 insertRecord(textBox1.Text, textBox2.Text, commandString);
-                populateListBox();
-                MessageBox.Show("Succesfully signed up, you can now log in!");
+                Connection();
+               
             }
         }
     }
 }
 
 
+ 

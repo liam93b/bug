@@ -39,5 +39,13 @@ namespace bugreal
         {
                 
         }
+
+        private void saveBugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            report frmchild = new report();
+            frmchild.MdiParent = this;
+            frmchild.Show();
+
+        }
     }
 }

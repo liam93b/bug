@@ -86,5 +86,12 @@ namespace bugreal
                 MessageBox.Show("Failure" + ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            edit ed = new edit();
+            ed.Show();
+
+        }
     }
 }
