@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlServerCe;
+using ICSharpCode.TextEditor.Document;
+using System.IO;
 
 namespace bugreal
 {
@@ -122,6 +124,18 @@ namespace bugreal
 
             this.Close();
             
+        }
+
+        private void txtcode_Load(object sender, EventArgs e)
+        {
+            string dirc = Application.StartupPath;
+            FileSyntaxModeProvider fsmp;
+            if (Directory.Exists(dirc))
+            {
+                fsmp = new FileSyntaxModeProvider(dirc);
+                HighlightingManager.Manager.AddSyntaxModeFileProvider(fsmp);
+                txtcode.SetHighlighting("C#");
+            }
         }
     }
 }
